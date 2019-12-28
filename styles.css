@@ -1,0 +1,52 @@
+#avatar {
+    border-radius: 50%;
+    width: 200px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+#map {
+    margin: 0 auto;
+}
+
+#sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color: #022c43;
+    left: -250px;
+    transition: all 500ms linear;
+}
+
+#sidebar.active {
+    left: 0px;
+}
+
+#sidebar ul li {
+    color: #dbedf3;
+    cursor: pointer;
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+}
+
+#sidebar .toggle-btn {
+    position: absolute;
+    left: 260px;
+    top: 20px;
+}
+
+#sidebar .toggle-btn span {
+    display: block;
+    width: 30px;
+    height: 5px;
+    background: #022c43;
+    margin: 3px 0px;
+    cursor: pointer;
+}
