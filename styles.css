@@ -11,9 +11,9 @@
     font-family: sans-serif;
 }
 
-#map {
+/*#map {
     margin: 0 auto;
-}
+}*/
 
 #sidebar {
     position: fixed;
@@ -40,6 +40,7 @@
     position: absolute;
     left: 260px;
     top: 20px;
+    cursor: pointer;
 }
 
 #sidebar .toggle-btn span {
@@ -48,5 +49,4 @@
     height: 5px;
     background: #022c43;
     margin: 3px 0px;
-    cursor: pointer;
 }
