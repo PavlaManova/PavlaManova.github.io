@@ -36,10 +36,10 @@
 			// долна преграда
 			var material2 = Physijs.createMaterial(material,1,1);
 			var geometry = new THREE.BoxGeometry( 280, 10, 2 ),
-				bar = new THREE.Mesh( geometry, material2 );
+				bar = new THREE.Mesh( geometry, material2,0 );
 				bar.position.set( 0, 10, 0 );
 			ground.add( bar );
-				bar = new THREE.Mesh( geometry, material2 );
+				bar = new THREE.Mesh( geometry, material2,0 );
 				bar.position.set( 0, 10, 0 );
 				bar.rotation.y = Math.PI/2;
 			ground.add( bar );
