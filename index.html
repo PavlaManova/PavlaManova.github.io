@@ -65,7 +65,7 @@
 				var dX = event.clientX-mouseX;
 				var dY = event.clientY-mouseY;
 
-				ground.rotation.set(Math.sin(dX),Math.cos(dY)x,0);
+				ground.rotation.set(0,0,Math.sin(dX)+Math.cos(dY)x);
 				// запомняме къде е мишката
 				mouseX = event.clientX;
 				mouseY = event.clientY;
