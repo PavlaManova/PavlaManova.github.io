@@ -43,11 +43,11 @@
 
 			// кубче
 			var geometry = new THREE.BoxGeometry( 20, 20, 20 ),
-				material = Physijs.createMaterial( new THREE.MeshPhongMaterial({color:'hotpink'}), 1, 1 );
+				material = Physijs.createMaterial( new THREE.MeshPhongMaterial({color:'hotpink'}), 1 );
 
 				for(var i=0;i<10;i++)
 				{
-					var cube = new Physijs.BoxMesh( geometry, material,1 );
+					var cube = new Physijs.BoxMesh( geometry, material );
 					cube.position.set( 0, 100, 0 );
 					cube.receiveShadow = true;
 					cube.castShadow = true;
