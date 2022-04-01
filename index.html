@@ -35,6 +35,42 @@
 				object.castShadow = true;
 			scene.add( object );
 
+			window.addEventListener( 'mousedown', onMouseDown, false );
+			window.addEventListener( 'mousemove', onMouseMove, false );
+			window.addEventListener( 'mouseup', onMouseUp, false );
+			var mouseButton = 0; // кой клавиш е натиснат
+			var mouseX = 0; // координати на последна
+			var mouseY = 0; // ...позиция на мишката
+
+
+			function onMouseDown(event)
+			{
+				mouseButton = event.which;
+				mouseX = event.clientX;
+				mouseY = event.clientY;
+			}
+
+			// обработване на пускане на миши бутон
+			function onMouseUp(event)
+			{
+				mouseButton = false;
+			}
+
+			// обработване на местене на мишката
+			function onMouseMove(event)
+			{
+				if (!mouseButton) return; // ако не е натиснат бутон
+
+				// изчисляване колко се е преместила мишката
+				var dX = event.clientX-mouseX;
+				var dY = event.clientY-mouseY;
+
+				ground.rotation.set(dx,dy,0);
+				// запомняме къде е мишката
+				mouseX = event.clientX;
+				mouseY = event.clientY;
+			}
+
 
 			function animate()
 			{
