@@ -64,8 +64,8 @@
 				var angle = (i+0.5)/32*2*Math.PI;
 
 				var material = new THREE.MeshPhongMaterial({color:'cornflowerblue', shininess:100}),
-					ball = new THREE.Mesh( geometry, material, 1 );
-					ball.position.set( 110*Math.cos(angle), -98, 110*Math.sin(angle) );
+					ball = new THREE.Mesh( geometry, material);
+					ball.position.set( 110*Math.cos(angle), -87, 110*Math.sin(angle) );
 				material.color = new THREE.Color( ['crimson','seagreen','orange','cornflowerblue'][i>>3]);
 				scene.add( ball );
 			}
