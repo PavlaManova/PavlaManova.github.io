@@ -20,7 +20,7 @@
 			scene.remove( ground );
 			ground = new THREE.Mesh(
 				new THREE.BoxGeometry( 400, 4, 40 ),
-				new THREE.MeshPhongMaterial( {color: 'gold'} )
+				new THREE.MeshPhongMaterial( {color: 'gold'} ),1,1,0
 			);
 			ground.position.set( 0, -12, 0 );
 			ground.receiveShadow = true;
@@ -29,7 +29,7 @@
 			// обект
 			scene.remove( object );
 			var geometry = new THREE.IcosahedronGeometry( 15, 2 );
-			var material = Physijs.createMaterial(new THREE.MeshPhongMaterial( {color: 'navy', shininess: 150, flatShading: true} ), 0.8),
+			var material = new THREE.MeshPhongMaterial( {color: 'navy', shininess: 150, flatShading: true} ),
 				object = new THREE.Mesh( geometry, material, 50 );
 				object.position.set( 0, 3, 0 );
 				object.castShadow = true;
@@ -65,7 +65,7 @@
 				var dX = event.clientX-mouseX;
 				var dY = event.clientY-mouseY;
 
-				ground.rotation.set(Math.sin(dX),Math.cos(dY),0);
+				ground.rotation.set(Math.sin(dX),Math.cos(dY)x,0);
 				// запомняме къде е мишката
 				mouseX = event.clientX;
 				mouseY = event.clientY;
