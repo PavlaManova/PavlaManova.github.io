@@ -28,8 +28,8 @@
 
 			// обект
 			scene.remove( object );
-			var geometry = new THREE.IcosahedronGeometry( 15, 2 ),
-				material = new THREE.MeshPhongMaterial( {color: 'navy', shininess: 150, flatShading: true} ), 0.8,
+			var geometry = new THREE.IcosahedronGeometry( 15, 2 );
+			var material = (new THREE.MeshPhongMaterial( {color: 'navy', shininess: 150, flatShading: true} ), 0.8),
 				object = new THREE.Mesh( geometry, material, 50 );
 				object.position.set( 0, 3, 0 );
 				object.castShadow = true;
