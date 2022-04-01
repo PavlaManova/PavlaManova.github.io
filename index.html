@@ -47,7 +47,7 @@
 
 				for(var i=0;i<10;i++)
 				{
-					var cube = new Physijs.BoxMesh( geometry, material );
+					var cube = new Physijs.BoxMesh( geometry, material,1 );
 					cube.position.set( 0, 100, 0 );
 					cube.receiveShadow = true;
 					cube.castShadow = true;
