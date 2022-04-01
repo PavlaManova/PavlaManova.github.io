@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>S0603: Накланяща се платформа</title>
+		<title>S0605: Пералня</title>
 		<meta charset="utf-8">
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -14,67 +14,68 @@
 
 	<body>
 		<script>
-			vaxSceneInit();
+			vaxInit();
 
-			// земя
-			scene.remove( ground );
-			ground = new THREE.Mesh(
-				new THREE.BoxGeometry( 400, 4, 40 ),
-				new THREE.MeshPhongMaterial( {color: 'gold'} ),1,1,0
-			);
-			ground.position.set( 0, -12, 0 );
-			ground.receiveShadow = true;
+			// по-добра позиция на камерата
+			camera.position.set( 0, 0, 350 );
+			camera.lookAt( new THREE.Vector3() );
+
+			var material = new THREE.MeshNormalMaterial( {transparent:true, opacity:0.2} );
+
+			// долна основа
+			var geometry = new THREE.CylinderGeometry( 150, 150, 2, 32 ),
+				ground = new THREE.Mesh( geometry, material );
+				ground.position.set( 0, -100, 0 );
 			scene.add( ground );
 
-			// обект
-			scene.remove( object );
-			var geometry = new THREE.IcosahedronGeometry( 15, 2 );
-			var material = new THREE.MeshPhongMaterial( {color: 'navy', shininess: 150, flatShading: true} ),
-				object = new THREE.Mesh( geometry, material, 50 );
-				object.position.set( 0, 3, 0 );
-				object.castShadow = true;
-			scene.add( object );
+			// горна основа
+			var ground2 = new THREE.Mesh( geometry, material );
+				ground2.position.set( 0, 200, 0 );
+			ground.add( ground2 );
 
-			window.addEventListener( 'mousedown', onMouseDown, false );
-			window.addEventListener( 'mousemove', onMouseMove, false );
-			window.addEventListener( 'mouseup', onMouseUp, false );
-			var mouseButton = 0; // кой клавиш е натиснат
-			var mouseX = 0; // координати на последна
-			var mouseY = 0; // ...позиция на мишката
+			// долна преграда
+			var geometry = new THREE.BoxGeometry( 280, 10, 2 ),
+				bar = new THREE.Mesh( geometry, material );
+				bar.position.set( 0, 10, 0 );
+			ground.add( bar );
+				bar = new THREE.Mesh( geometry, material );
+				bar.position.set( 0, 10, 0 );
+				bar.rotation.y = Math.PI/2;
+			ground.add( bar );
 
-
-			function onMouseDown(event)
+			// ограничители
+			geometry = new THREE.BoxGeometry( 30, 200, 3 );
+			for( var i=0; i<20; i++)
 			{
-				mouseButton = event.which;
-				mouseX = event.clientX;
-				mouseY = event.clientY;
+				var angle = i/20*2*Math.PI;
+				var barrier = new THREE.Mesh( geometry, material, 0 );
+				barrier.position.set( 140*Math.cos(angle), 100,  140*Math.sin(angle) );
+				barrier.rotation.set( 0, -angle+Math.PI/2, 0 );
+				ground.add( barrier );
 			}
 
-			// обработване на пускане на миши бутон
-			function onMouseUp(event)
+			scene.add( ground );
+
+			var geometry = new THREE.IcosahedronGeometry( 10 );
+
+			for( var i=0; i<32; i++ )
 			{
-				mouseButton = false;
+				var angle = (i+0.5)/32*2*Math.PI;
+
+				var material = new THREE.MeshPhongMaterial({color:'cornflowerblue', shininess:100}),
+					ball = new THREE.Mesh( geometry, material, 1 );
+					ball.position.set( 110*Math.cos(angle), -100, 110*Math.sin(angle) );
+				material.color = new THREE.Color( ['crimson','seagreen','orange','cornflowerblue'][i>>3]);
+				scene.add( ball );
 			}
 
-			// обработване на местене на мишката
-			function onMouseMove(event)
-			{
-				if (!mouseButton) return; // ако не е натиснат бутон
-
-				// изчисляване колко се е преместила мишката
-				var dX = event.clientX-mouseX;
-				var dY = event.clientY-mouseY;
-
-				ground.rotation.set(0,0,Math.sin(dX)+Math.cos(dY));
-				// запомняме къде е мишката
-				mouseX = event.clientX;
-				mouseY = event.clientY;
-			}
-
-
-			function animate()
+			var dRot = 0;
+			function animate( t )
 			{
 				scene.simulate( 1/10 );
+
+				dRot += 0.1*Math.sin( t/5 );
+				ground.rotation.y = dRot;
 			}
 		</script>
 	</body>
