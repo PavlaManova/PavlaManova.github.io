@@ -34,11 +34,12 @@
 			ground.add( ground2 );
 
 			// долна преграда
+			var material2 = Physijs.createMaterial(material,1,1);
 			var geometry = new THREE.BoxGeometry( 280, 10, 2 ),
-				bar = new THREE.Mesh( geometry, material );
+				bar = new THREE.Mesh( geometry, material2 );
 				bar.position.set( 0, 10, 0 );
 			ground.add( bar );
-				bar = new THREE.Mesh( geometry, material );
+				bar = new THREE.Mesh( geometry, material2 );
 				bar.position.set( 0, 10, 0 );
 				bar.rotation.y = Math.PI/2;
 			ground.add( bar );
@@ -64,7 +65,7 @@
 
 				var material = new THREE.MeshPhongMaterial({color:'cornflowerblue', shininess:100}),
 					ball = new THREE.Mesh( geometry, material, 1 );
-					ball.position.set( 110*Math.cos(angle), -100, 110*Math.sin(angle) );
+					ball.position.set( 110*Math.cos(angle), -98, 110*Math.sin(angle) );
 				material.color = new THREE.Color( ['crimson','seagreen','orange','cornflowerblue'][i>>3]);
 				scene.add( ball );
 			}
